@@ -48,7 +48,7 @@ stdenv.mkDerivation rec {
       SE platform.
     '';
     homepage = https://visualvm.java.net/;
-    license = licenses.gpl2ClasspathPlus;
+    license = licenses.gpl2PlusClasspath;
     platforms = platforms.all;
     maintainers = with maintainers; [ michalrus moaxcp ];
   };

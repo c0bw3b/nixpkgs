@@ -69,7 +69,7 @@ in stdenv.mkDerivation rec {
     # their licenses here.  ACL2 proper is released under a BSD
     # 3-clause license.
     #license = with stdenv.lib.licenses;
-    #[ free bsd3 mit gpl2 llgpl21 cc0 publicDomain ];
+    #[ free bsd3 mit gpl2 cc0 publicDomain ];
     license = stdenv.lib.licenses.bsd3;
     maintainers = with stdenv.lib.maintainers; [ kini raskin ];
     platforms = stdenv.lib.platforms.linux;

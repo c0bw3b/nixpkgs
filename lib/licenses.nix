@@ -8,9 +8,11 @@ let
 in
 
 lib.mapAttrs (n: v: v // { shortName = n; }) rec {
-  /* License identifiers from spdx.org where possible.
+  /* License identifiers from SPDX.org whenever possible.
    * If you cannot find your license here, then look for a similar license or
    * add it to this list. The URL mentioned above is a good source for inspiration.
+   *
+   * Identifiers of known license exceptions can be found at the end of this file.
    */
 
   afl21 = spdx {
@@ -24,13 +26,13 @@ lib.mapAttrs (n: v: v // { shortName = n; }) rec {
   };
 
   agpl3 = spdx {
-    spdxId = "AGPL-3.0";
-    fullName = "GNU Affero General Public License v3.0";
+    spdxId = "AGPL-3.0-only";
+    fullName = "GNU Affero General Public License v3.0 only";
   };
 
-  agpl3Plus = {
+  agpl3Plus = spdx {
+    spdxId = "AGPL-3.0-or-later";
     fullName = "GNU Affero General Public License v3.0 or later";
-    inherit (agpl3) url;
   };
 
   amazonsl = {
@@ -94,14 +96,11 @@ lib.mapAttrs (n: v: v // { shortName = n; }) rec {
     fullName = ''BSD 3-clause "New" or "Revised" License'';
   };
 
+  bsd4 = bsdOriginal;
+
   bsdOriginal = spdx {
     spdxId = "BSD-4-Clause";
     fullName = ''BSD 4-clause "Original" or "Old" License'';
-  };
-
-  bsl10 = {
-    fullName = "Business Source License 1.0";
-    url = https://mariadb.com/bsl10;
   };
 
   bsl11 = {
@@ -109,75 +108,76 @@ lib.mapAttrs (n: v: v // { shortName = n; }) rec {
     url = https://mariadb.com/bsl11;
   };
 
-  clArtistic = spdx {
-    spdxId = "ClArtistic";
-    fullName = "Clarified Artistic License";
-  };
-
   cc0 = spdx {
     spdxId = "CC0-1.0";
     fullName = "Creative Commons Zero v1.0 Universal";
   };
 
+  cc-by-30 = spdx {
+    spdxId = "CC-BY-3.0";
+    fullName = "Creative Commons Attribution 3.0 Unported";
+  };
+
+  cc-by-40 = spdx {
+    spdxId = "CC-BY-4.0";
+    fullName = "Creative Commons Attribution 4.0 International";
+  };
+
+  cc-by-nc-40 = spdx {
+    spdxId = "CC-BY-NC-4.0";
+    fullName = "Creative Commons Attribution-NonCommercial 4.0 International";
+    free = false;
+  };
+
   cc-by-nc-sa-20 = spdx {
     spdxId = "CC-BY-NC-SA-2.0";
-    fullName = "Creative Commons Attribution Non Commercial Share Alike 2.0";
+    fullName = "Creative Commons Attribution-NonCommercial-ShareAlike 2.0 Generic";
     free = false;
   };
 
   cc-by-nc-sa-25 = spdx {
     spdxId = "CC-BY-NC-SA-2.5";
-    fullName = "Creative Commons Attribution Non Commercial Share Alike 2.5";
+    fullName = "Creative Commons Attribution-NonCommercial-ShareAlike 2.5 Generic";
     free = false;
   };
 
   cc-by-nc-sa-30 = spdx {
     spdxId = "CC-BY-NC-SA-3.0";
-    fullName = "Creative Commons Attribution Non Commercial Share Alike 3.0";
+    fullName = "Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported";
     free = false;
   };
 
   cc-by-nc-sa-40 = spdx {
     spdxId = "CC-BY-NC-SA-4.0";
-    fullName = "Creative Commons Attribution Non Commercial Share Alike 4.0";
-    free = false;
-  };
-
-  cc-by-nc-40 = spdx {
-    spdxId = "CC-BY-NC-4.0";
-    fullName = "Creative Commons Attribution Non Commercial 4.0 International";
+    fullName = "Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International";
     free = false;
   };
 
   cc-by-nd-30 = spdx {
     spdxId = "CC-BY-ND-3.0";
-    fullName = "Creative Commons Attribution-No Derivative Works v3.00";
+    fullName = "Creative Commons Attribution-NoDerivs 3.0 Unported";
+    free = false;
+  };
+
+  cc-by-nd-40 = spdx {
+    spdxId = "CC-BY-ND-4.0";
+    fullName = "Creative Commons Attribution-NoDerivatives 4.0 International";
     free = false;
   };
 
   cc-by-sa-25 = spdx {
     spdxId = "CC-BY-SA-2.5";
-    fullName = "Creative Commons Attribution Share Alike 2.5";
-  };
-
-  cc-by-30 = spdx {
-    spdxId = "CC-BY-3.0";
-    fullName = "Creative Commons Attribution 3.0";
+    fullName = "Creative Commons Attribution-ShareAlike 2.5 Generic";
   };
 
   cc-by-sa-30 = spdx {
     spdxId = "CC-BY-SA-3.0";
-    fullName = "Creative Commons Attribution Share Alike 3.0";
-  };
-
-  cc-by-40 = spdx {
-    spdxId = "CC-BY-4.0";
-    fullName = "Creative Commons Attribution 4.0";
+    fullName = "Creative Commons Attribution-ShareAlike 3.0 Unported";
   };
 
   cc-by-sa-40 = spdx {
     spdxId = "CC-BY-SA-4.0";
-    fullName = "Creative Commons Attribution Share Alike 4.0";
+    fullName = "Creative Commons Attribution-ShareAlike 4.0 International";
   };
 
   cddl = spdx {
@@ -190,6 +190,11 @@ lib.mapAttrs (n: v: v // { shortName = n; }) rec {
     fullName = "CeCILL Free Software License Agreement v2.0";
   };
 
+  cecill21 = spdx {
+    spdxId = "CECILL-2.1";
+    fullName = "CeCILL Free Software License Agreement v2.1";
+  };
+
   cecill-b = spdx {
     spdxId = "CECILL-B";
     fullName  = "CeCILL-B Free Software License Agreement";
@@ -199,6 +204,13 @@ lib.mapAttrs (n: v: v // { shortName = n; }) rec {
     spdxId = "CECILL-C";
     fullName  = "CeCILL-C Free Software License Agreement";
   };
+
+  clArtistic = spdx {
+    spdxId = "ClArtistic";
+    fullName = "Clarified Artistic License";
+  };
+
+  clisp = [ gpl2 clispExcep20 ]; # https://gitlab.com/gnu-clisp/clisp/blob/master/COPYRIGHT
 
   cpal10 = spdx {
     spdxId = "CPAL-1.0";
@@ -210,9 +222,9 @@ lib.mapAttrs (n: v: v // { shortName = n; }) rec {
     fullName = "Common Public License 1.0";
   };
 
-  curl = {
-    fullName = "MIT/X11 derivate";
-    url = "https://curl.haxx.se/docs/copyright.html";
+  curl = spdx {
+    spdxId = "curl";
+    fullName = "curl License";
   };
 
   doc = spdx {
@@ -237,7 +249,7 @@ lib.mapAttrs (n: v: v // { shortName = n; }) rec {
   };
 
   elastic = {
-    fullName = "ELASTIC LICENSE";
+    fullName = "Elastic License";
     url = https://github.com/elastic/elasticsearch/blob/master/licenses/ELASTIC-LICENSE.txt;
     free = false;
   };
@@ -264,13 +276,23 @@ lib.mapAttrs (n: v: v // { shortName = n; }) rec {
   };
 
   fdl12 = spdx {
-    spdxId = "GFDL-1.2";
-    fullName = "GNU Free Documentation License v1.2";
+    spdxId = "GFDL-1.2-only";
+    fullName = "GNU Free Documentation License v1.2 only";
+  };
+
+  fdl12Plus = spdx {
+    spdxId = "GFDL-1.2-or-later";
+    fullName = "GNU Free Documentation License v1.2 or later";
   };
 
   fdl13 = spdx {
-    spdxId = "GFDL-1.3";
-    fullName = "GNU Free Documentation License v1.3";
+    spdxId = "GFDL-1.3-only";
+    fullName = "GNU Free Documentation License v1.3 only";
+  };
+
+  fdl13Plus = spdx {
+    spdxId = "GFDL-1.3-or-later";
+    fullName = "GNU Free Documentation License v1.3 or later";
   };
 
   ffsl = {
@@ -295,65 +317,51 @@ lib.mapAttrs (n: v: v // { shortName = n; }) rec {
   };
 
   gpl1 = spdx {
-    spdxId = "GPL-1.0";
+    spdxId = "GPL-1.0-only";
     fullName = "GNU General Public License v1.0 only";
   };
 
   gpl1Plus = spdx {
-    spdxId = "GPL-1.0+";
+    spdxId = "GPL-1.0-or-later";
     fullName = "GNU General Public License v1.0 or later";
   };
 
   gpl2 = spdx {
-    spdxId = "GPL-2.0";
+    spdxId = "GPL-2.0-only";
     fullName = "GNU General Public License v2.0 only";
   };
 
-  gpl2Classpath = {
-    spdxId = "GPL-2.0-with-classpath-exception";
-    fullName = "GNU General Public License v2.0 only (with Classpath exception)";
-    url = https://fedoraproject.org/wiki/Licensing/GPL_Classpath_Exception;
-  };
-
-  gpl2ClasspathPlus = {
-    fullName = "GNU General Public License v2.0 or later (with Classpath exception)";
-    url = https://fedoraproject.org/wiki/Licensing/GPL_Classpath_Exception;
-  };
-
-  gpl2Oss = {
-    fullName = "GNU General Public License version 2 only (with OSI approved licenses linking exception)";
-    url = https://www.mysql.com/about/legal/licensing/foss-exception;
-  };
+  gpl2Classpath = [ gpl2 classpathExcep20 ];
 
   gpl2Plus = spdx {
-    spdxId = "GPL-2.0+";
+    spdxId = "GPL-2.0-or-later";
     fullName = "GNU General Public License v2.0 or later";
   };
 
+  gpl2PlusClasspath = [ gpl2Plus classpathExcep20 ];
+
   gpl3 = spdx {
-    spdxId = "GPL-3.0";
+    spdxId = "GPL-3.0-only";
     fullName = "GNU General Public License v3.0 only";
   };
 
   gpl3Plus = spdx {
-    spdxId = "GPL-3.0+";
+    spdxId = "GPL-3.0-or-later";
     fullName = "GNU General Public License v3.0 or later";
   };
 
-  gpl3ClasspathPlus = {
-    fullName = "GNU General Public License v3.0 or later (with Classpath exception)";
-    url = https://fedoraproject.org/wiki/Licensing/GPL_Classpath_Exception;
-  };
+  gpl3PlusClasspath = [ gpl3Plus classpathExcep20 ];
+
+  gpl3Qt = [ gpl3 qtgplExcep10 ];
 
   hpnd = spdx {
     spdxId = "HPND";
     fullName = "Historic Permission Notice and Disclaimer";
   };
 
-  # Intel's license, seems free
-  iasl = {
-    fullName = "iASL";
-    url = http://www.calculate-linux.org/packages/licenses/iASL;
+  iacpi = spdx {
+    spdxId = "Intel-ACPI";
+    fullName = "Intel ACPI Software License Agreement";
   };
 
   ijg = spdx {
@@ -362,8 +370,8 @@ lib.mapAttrs (n: v: v // { shortName = n; }) rec {
   };
 
   imagemagick = spdx {
+    spdxId = "ImageMagick";
     fullName = "ImageMagick License";
-    spdxId = "imagemagick";
   };
 
   inria-compcert = {
@@ -406,32 +414,34 @@ lib.mapAttrs (n: v: v // { shortName = n; }) rec {
   };
 
   lgpl2 = spdx {
-    spdxId = "LGPL-2.0";
+    spdxId = "LGPL-2.0-only";
     fullName = "GNU Library General Public License v2 only";
   };
 
   lgpl2Plus = spdx {
-    spdxId = "LGPL-2.0+";
+    spdxId = "LGPL-2.0-or-later";
     fullName = "GNU Library General Public License v2 or later";
   };
 
   lgpl21 = spdx {
-    spdxId = "LGPL-2.1";
+    spdxId = "LGPL-2.1-only";
     fullName = "GNU Library General Public License v2.1 only";
   };
 
   lgpl21Plus = spdx {
-    spdxId = "LGPL-2.1+";
+    spdxId = "LGPL-2.1-or-later";
     fullName = "GNU Library General Public License v2.1 or later";
   };
 
+  lgpl21Qt = [ lgpl21 qtlgplExcep11 ];
+
   lgpl3 = spdx {
-    spdxId = "LGPL-3.0";
+    spdxId = "LGPL-3.0-only";
     fullName = "GNU Lesser General Public License v3.0 only";
   };
 
   lgpl3Plus = spdx {
-    spdxId = "LGPL-3.0+";
+    spdxId = "LGPL-3.0-or-later";
     fullName = "GNU Lesser General Public License v3.0 or later";
   };
 
@@ -445,10 +455,7 @@ lib.mapAttrs (n: v: v // { shortName = n; }) rec {
     fullName = "libtiff License";
   };
 
-  llgpl21 = {
-    fullName = "Lisp LGPL; GNU Lesser General Public License version 2.1 with Franz Inc. preamble for clarification of LGPL terms in context of Lisp";
-    url = http://opensource.franz.com/preamble.html;
-  };
+  llgpl21 = [ lgpl21 franzPreamble ]; # Lisp LGPL-2.1
 
   lppl12 = spdx {
     spdxId = "LPPL-1.2";
@@ -465,13 +472,13 @@ lib.mapAttrs (n: v: v // { shortName = n; }) rec {
     fullName = "Lucent Public License v1.02";
   };
 
-  miros = {
+  miros = spdx {
+    spdxId = "MirOS";
     fullName = "MirOS License";
-    url = https://opensource.org/licenses/MirOS;
   };
 
-  # spdx.org does not (yet) differentiate between the X11 and Expat versions
-  # for details see http://en.wikipedia.org/wiki/MIT_License#Various_versions
+  # Expat variant of the MIT license
+  # Look at 'x11' for the X11 variant
   mit = spdx {
     spdxId = "MIT";
     fullName = "MIT License";
@@ -517,6 +524,8 @@ lib.mapAttrs (n: v: v // { shortName = n; }) rec {
     spdxId = "NPOSL-3.0";
     fullName = "Non-Profit Open Software License 3.0";
   };
+
+  ocaml = [ lgpl21 ocamlExcep ]; # OCaml's License - https://ocaml.org/docs/license.html
 
   ocamlpro_nc = {
     fullName = "OCamlPro Non Commercial license version 1";
@@ -576,7 +585,7 @@ lib.mapAttrs (n: v: v // { shortName = n; }) rec {
   };
 
   purdueBsd = {
-    fullName = " Purdue BSD-Style License"; # also know as lsof license
+    fullName = "Purdue BSD-Style License"; # also known as lsof license
     url = https://enterprise.dejacode.com/licenses/public/purdue-bsd;
   };
 
@@ -585,10 +594,7 @@ lib.mapAttrs (n: v: v // { shortName = n; }) rec {
     fullName = "Q Public License 1.0";
   };
 
-  qwt = {
-    fullName = "Qwt License, Version 1.0";
-    url = http://qwt.sourceforge.net/qwtlicense.html;
-  };
+  qwt = [ lgpl21 qwtExcep10 ]; # http://qwt.sourceforge.net/qwtlicense.html
 
   ruby = spdx {
     spdxId = "Ruby";
@@ -647,9 +653,9 @@ lib.mapAttrs (n: v: v // { shortName = n; }) rec {
     fullName = "The Unlicense";
   };
 
-  upl = {
-    fullName = "Universal Permissive License";
-    url = "https://oss.oracle.com/licenses/upl/";
+  upl = spdx {
+    spdxId = "UPL-1.0";
+    fullName = "Universal Permissive License v1.0";
   };
 
   vim = spdx {
@@ -688,9 +694,13 @@ lib.mapAttrs (n: v: v // { shortName = n; }) rec {
     fullName = "Do What The F*ck You Want To Public License";
   };
 
-  wxWindows = spdx {
-    spdxId = "WXwindows";
-    fullName = "wxWindows Library Licence, Version 3.1";
+  wxWindows = [ lgpl2Plus wxExcep31 ];
+
+  # X11 variant of the MIT license
+  # Look at 'mit' for the Expat variant
+  x11 = spdx {
+    spdxId = "X11";
+    fullName = "X11 License";
   };
 
   xfig = {
@@ -711,5 +721,136 @@ lib.mapAttrs (n: v: v // { shortName = n; }) rec {
   zpl21 = spdx {
     spdxId = "ZPL-2.1";
     fullName = "Zope Public License 2.1";
+  };
+
+  /*
+   * Known license exceptions are listed after this.
+   * Refer to https://spdx.org/licenses/exceptions-index.html
+   */
+
+  acExcep20 = spdx {
+    spdxId = "Autoconf-exception-2.0"; # Typically used with GPL-2.0
+    fullName = "with Autoconf exception 2.0";
+  };
+
+  acExcep30 = spdx {
+    spdxId = "Autoconf-exception-3.0"; # Typically used with GPL-3.0
+    fullName = "with Autoconf exception 3.0";
+  };
+
+  bisonExcep22 = spdx {
+    spdxId = "Bison-exception-2.2"; # Typically used with GPL-2.0 or GPL-3.0
+    fullName = "with Bison exception 2.2";
+  };
+
+  classpathExcep20 = spdx {
+    spdxId = "Classpath-exception-2.0"; # Typically used by Java packages with (L)GPL licensing
+    fullName = "with Classpath exception 2.0";
+  };
+
+  clispExcep20 = spdx {
+    spdxId = "CLISP-exception-2.0"; # Typically used with GPL-2.0
+    fullName = "with CLISP exception 2.0";
+  };
+
+  ds389Excep = spdx {
+    spdxId = "389-exception"; # Specified to be associated with GPL-2.0
+    fullName = "with 389 Directory Server exception";
+  };
+
+  fltkExcep = spdx {
+    spdxId = "FLTK-exception"; # Specified to be associated with LGPL-2.0
+    fullName = "with FLTK exception";
+  };
+
+  fontExcep20 = spdx {
+    spdxId = "Font-exception-2.0"; # Typically used with GPL-2.0
+    fullName = "with Font exception 2.0";
+  };
+
+  franzPreamble = {
+    fullName = "with Franz Inc. preamble for clarification of LGPL terms in context of Lisp";
+    url = "https://opensource.franz.com/preamble.html";
+  };
+
+  # Sometimes also referred to as "linking exception"
+  gccExcep20 = spdx {
+    spdxId = "GCC-exception-2.0"; # Typically used with GPL-2.0-or-later
+    fullName = "with GCC Runtime Library exception 2.0";
+  };
+
+  gccExcep31 = spdx {
+    spdxId = "GCC-exception-3.1"; # Typically used with GPL-3.0
+    fullName = "with GCC Runtime Library exception 3.1";
+  };
+
+  i2pExcep = spdx {
+    spdxId = "i2p-gpl-java-exception"; # Typically used with GPL-2.0-or-later
+    fullName = "with i2p GPL+Java exception";
+  };
+
+  libtoolExcep = spdx {
+    spdxId = "Libtool-exception"; # Typically used with GPL-2.0-or-later
+    fullName = "with Libtool exception";
+  };
+
+  llvmExcep = spdx {
+    spdxId = "LLVM-exception"; # Created specifically to be used with Apache-2.0
+    fullName = "with LLVM exception";
+  };
+
+  lzmaExcep = spdx {
+    spdxId = "LZMA-exception"; # Applies specifically to CPL-1.0
+    fullName = "with LZMA exception";
+  };
+
+  mifExcep = spdx {
+    spdxId = "mif-exception"; # Typically used with GPL-2.0 for older versions of GCC
+    fullName = "with Macros and Inline Functions exception";
+  };
+
+  ocamlExcep = spdx {
+    spdxId = "OCaml-LGPL-linking-exception"; # Used with LGPL-2.0-or-later
+    fullName = "with OCaml LGPL linking exception";
+  };
+
+  ojdkExcep10 = spdx {
+    spdxId = "OpenJDK-assembly-exception-1.0"; # Typically used with GPL-2.0-or-later
+    fullName = "with OpenJDK Assembly exception 1.0";
+  };
+
+  ovpnExcep = spdx {
+    spdxId = "openvpn-openssl-exception"; # Typically used with GPL-2.0
+    fullName = "with OpenVPN OpenSSL exception";
+  };
+
+  pspdfFontExcep = spdx {
+    spdxId = "PS-or-PDF-font-exception-20170817"; # Usage recommended with AGPL-3.0
+    fullName = "with PS/PDF font exception (2017-08-17)";
+  };
+
+  qtgplExcep10 = spdx {
+    spdxId = "Qt-GPL-exception-1.0"; # Typically used with GPL-3.0
+    fullName = "with Qt GPL exception 1.0";
+  };
+
+  qtlgplExcep11 = spdx {
+    spdxId = "Qt-LGPL-exception-1.1"; # Usage only possible with LGPL-2.1
+    fullName = "with Qt LGPL exception 1.1";
+  };
+
+  qwtExcep10 = spdx {
+    spdxId = "Qwt-exception-1.0"; # Specified to be associated with LGPL-2.1
+    fullName = "with Qwt exception 1.0";
+  };
+
+  syscallExcep = spdx {
+    spdxId = "Linux-syscall-note"; # Used by the Linux kernel to clarify how user space API files should be treated
+    fullName = "with Linux syscall note";
+  };
+
+  wxExcep31 = spdx {
+    spdxId = "WxWindows-exception-3.1"; # Typically used with LGPL-2.0-or-later
+    fullName = "with WxWindows Library exception 3.1";
   };
 }
