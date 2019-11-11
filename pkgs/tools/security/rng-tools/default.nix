@@ -6,9 +6,7 @@
 , curl ? null, libxml2 ? null, openssl ? null, withNistBeacon ? false
   # Systems that support RDRAND but not AES-NI require libgcrypt to use RDRAND as an entropy source
 , libgcrypt ? null, withGcrypt ? true
-  # Not sure if jitterentropy is safe to use for cryptography
-  # and thus a default entropy source
-, jitterentropy ? null, withJitterEntropy ? false
+, jitterentropy ? null, withJitterEntropy ? true
 , libp11 ? null, opensc ? null, withPkcs11 ? true
 }:
 
@@ -36,7 +34,7 @@ stdenv.mkDerivation rec {
 
   configureFlags = [
     (withFeature   withGcrypt        "libgcrypt")
-    (enableFeature withJitterEntropy "jitterentropy")
+    (withFeature   withJitterEntropy "jitterentropy")
     (withFeature   withNistBeacon    "nistbeacon")
     (withFeature   withPkcs11        "pkcs11")
   ];
